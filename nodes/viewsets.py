@@ -13,8 +13,13 @@ class NodeViewSet(viewsets.ReadOnlyModelViewSet):
     @detail_route()
     def get_children(self, request, pk=None):
         node = self.get_object()
-        first_search = node.node_ancestry + '/' + node.node_id
-        second_search = node.node_ancestry + '/' + node.node_id + '/'
-        children = Node.objects.filter(Q(Node=first_search) | Q(Node__startswith=second_search))
-        serializer = NodeSerializer(children)
-        return Response(serializer.data)
+        if node.node_id != 1:
+            search = node.node_ancestry + '/' + str(node.node_id)
+            # second_search = node.node_ancestry + '/' + str(node.node_id) + '/'
+            children = Node.objects.filter(Q(node_ancestry=search))
+            serializer = NodeSerializer(children, many=True)
+            return Response(serializer.data)
+        else:
+            children = Node.objects.filter(Q(node_ancestry='1'))
+            serializer = NodeSerializer(children, many=True)
+            return Response(serializer.data)
