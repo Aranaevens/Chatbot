@@ -83,6 +83,21 @@ celerybeat-schedule
 # dotenv
 .env
 
+# vue generated gitingore
+.DS_Store
+node_modules/
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
 # virtualenv
 .venv
 venv/
@@ -107,7 +122,7 @@ media/
 *.pyc
 *.db
 *.pid
-# django migrations 
+# django migrations
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
