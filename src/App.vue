@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <chat/>
+    <chat
+      :feed="feed"
+      v-on:onEmit="onEmit"/>
   </div>
 </template>
 
@@ -9,8 +11,18 @@ import chat from './components/chat'
 
 export default {
   name: 'App',
+  data: function(){
+    return {
+      feed: [],
+    }
+  },
   components: {
     chat
+  },
+  methods: {
+    onEmit(value){
+      this.feed.push(value);
+    }
   }
 }
 </script>

@@ -8,6 +8,7 @@
     <div class="totheright">
       <questions />
     </div>
+    <div>{{ feed }}</div>
   </div>
 </template>
 
@@ -26,13 +27,14 @@ export default{
   },
   mounted: function(){
     this.getMessage(1);
+    this.$emit('onEmit', "<chat />");
   },
   methods: {
     getMessage: function(id){
       let app = this;
       axios.get("/api/node/" + id).then(response => {
         app.message = response.data.node_text;
-      })
+      });
     },
 
     onQuestionClick: function(value){
@@ -41,6 +43,9 @@ export default{
   },
   components: {
     questions
+  },
+  props: {
+    feed: Object,
   }
 }
 </script>

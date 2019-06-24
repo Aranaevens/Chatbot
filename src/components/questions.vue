@@ -3,6 +3,7 @@
   <div
     v-for="intitule in choices"
     v-bind:key="intitule.node_id"
+    @click="onClick(intitule)"
     class="intitule"
     id="questions"
     >
@@ -32,11 +33,12 @@ export default{
         .then(response => {
           app.choices = response.data;
       })
+    },
+    onClick: function(obj){
+      console.log(obj);
+      console.log(obj.node_id);
     }
   },
-  // components: {
-  //   questions
-  // }
 }
 </script>
 
